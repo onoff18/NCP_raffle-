@@ -18,6 +18,8 @@ public class ExcelOut {
 
         ZipSecureFile.setMinInflateRatio(-1.0d); //anti «Zip bomb»
 
+        int countPrizes = 3;
+
         Workbook wb = new XSSFWorkbook(fis);
         List<Participant> participants = new ArrayList<>();
         List<Participant> winners = new ArrayList<>();
@@ -27,7 +29,7 @@ public class ExcelOut {
             participants.add(new Participant(getPhone(wb, i), getEmail(wb, i), getData(wb,i), getReceiptId(wb,i)));
         }
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < countPrizes; i++) {
            winners.add(participants.get(choosingWinner(participants.size(), sumNumberOfNumbers(participants.size()))));
            participants.remove(choosingWinner(participants.size(), sumNumberOfNumbers(participants.size())));
         }
